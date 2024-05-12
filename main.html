@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Michroma&family=Oswald:wght@200..700&family=Poetsen+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+        </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Atestat Info</title>
+</head>
+<body>
+    <div class="header">
+        <div class="text">
+            <h1 style="font-size: 80px;margin-top: 0px;margin-bottom: 0px;">Pisicilandia</h1>
+            <h2 style="margin-top: 0px;">Explorând lumea minunată a pisicilor</h3>
+        </div>
+    </div>
+    <div class="main">
+        <img src="catmap.jpg" id="catmap" usemap="#image-map" alt="catmap">
+        <map name="image-map" id="demo">
+            <area target="" alt="" title="" href="" coords="804,281,862,357" shape="rect">
+        </map>
+        <script>
+
+            var breeds = [
+                ["Scottish Fold", [0.43, 0.23, 0.48, 0.30]],
+                ["Norv", [0.51, 0.15, 0.57, 0.22]],
+                ["AlbR", [0.64, 0.17, 0.69, 0.25]],
+                ["Maine", [0.23, 0.24, 0.29, 0.32]],
+                ["Jap", [0.86, 0.30, 0.91, 0.37]],
+                ["Persian", [0.54, 0.39, 0.61, 0.44]],
+                ["Siamese", [0.75, 0.46, 0.81, 0.52]]
+            ];
+    
+            var coords = [
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0],
+                [0,0,0,0]
+            ]; 
+            $(document).ready(function(){
+                function updateCoords(){
+                    var width = $('#catmap').width();
+                    var height = $('#catmap').height();
+                    
+                    for(let i=0;i<breeds.length;i++){
+                        for(let j=0;j < breeds[i][1].length;j=j+2){
+                            coords[i][j] = breeds[i][1][j] * width;
+                            coords[i][j+1] = breeds[i][1][j+1] * height;
+                    }
+                
+    
+                }
+                let text = ""
+                for(let i=0;i < coords.length;i++){
+                
+                    text = text + "<area target='' alt='' title='' href='' coords='" + coords[i][0] + "," + coords[i][1] + "," + coords[i][2] + "," + coords[i][3] + "'shape='rect'>";
+                    }
+                    
+                document.getElementById("demo").innerHTML = text;}
+                setInterval(updateCoords,500)
+            })
+    
+            /*       $(document).ready(function(){
+        $('#image').click(function(event){
+            var x = event.pageX - $(this).offset().left;
+            var y = event.pageY - $(this).offset().top;
+            var width = $(this).width();
+            var height = $(this).height();
+            var ratioX = x / width;
+            var ratioY = y / height;
+            console.log(ratioX.toFixed(2), ratioY.toFixed(2));
+        });
+    });*/
+
+        </script>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>
